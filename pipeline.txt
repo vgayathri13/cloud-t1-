@@ -1,0 +1,36 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Clone Repository') {
+            steps {
+                echo 'Cloning the Git repository...'
+                git 'https://github.com/your-username/your-repo.git'
+            }
+        }
+
+        stage('Build') {
+            steps {
+                echo 'Building the application...'
+                // Replace with your build command
+                sh 'javac Main.java'
+            }
+        }
+
+        stage('Test') {
+            steps {
+                echo 'Running tests...'
+                // Replace with your test command
+                sh 'java org.junit.runner.JUnitCore TestMain'
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                echo 'Deploying application...'
+                // Replace with your deployment script/command
+                sh './deploy.sh'
+            }
+        }
+    }
+}
